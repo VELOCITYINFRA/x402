@@ -1,0 +1,30 @@
+{
+  "version": "1",
+  "description": "Machine-readable manifest for X402 payment discovery.",
+  "endpoints": [
+    {
+      "method": "GET",
+      "paymentRequirements": {
+        "x402Version": 1,
+        "accepts": [
+          {
+            "scheme": "exact",
+            "network": "solana",
+            "maxAmountRequired": "AMOUNT IN LAMPORTS",
+            "resource": "RESOURCE",
+            "description": "DESCRIPTION",
+            "mimeType": "application/json",
+            "payTo": "RESOURCE OWNER",
+            "maxTimeoutSeconds": 300,
+            "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", //here usdc
+            "outputSchema": {},
+            "extra": {
+              "feePayer": "2wKupLR9q6wXYppw8Gr2NvWxKBUqm4PPJKkQfoxHDBg4"
+            }
+          }
+        ],
+        "error": "Payment required"
+      }
+    }
+  ]
+}
