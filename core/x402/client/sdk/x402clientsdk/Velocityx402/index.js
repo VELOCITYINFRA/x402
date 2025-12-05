@@ -12,17 +12,20 @@
 
 
 
-function buildVelocityURL_FOR_GET(tag) {
+export function buildVelocityURL_FOR_GET(tag) {
   return `https://xvelocity.dev/api/${tag}`;
   
 }
 
-function buildVelocityURL_FOR_POST() {
+
+export function buildVelocityURL_FOR_POST() {
   return `https://xvelocity.dev/api/postv`;
 }
 
 
-function buildHeaders(walletAddress) {
+
+
+export function buildHeaders(walletAddress) {
   return {
     "x-wallet": walletAddress,
     "content-type": "application/json"
@@ -30,33 +33,13 @@ function buildHeaders(walletAddress) {
 }
 
 
-function buildHeadersForPOST(walletAddress,tag) {
+export function buildHeadersForPOST(walletAddress,tag) {
 
   return {
     "x-wallet": walletAddress,
     "x402id":tag,
     "content-type": "application/json"
   };
-}
-
-
-/**
- * Validates the configuration object.
- * @private
- */
-function validateConfig({ x402client, dev_address, tag, method }) {
-  if (!x402client) {
-    throw new Error("x402client is required");
-  }
-  if (!dev_address || typeof dev_address !== "string") {
-    throw new Error("dev_address must be a valid string");
-  }
-  if (!tag || typeof tag !== "string") {
-    throw new Error("tag must be a valid string");
-  }
-  if (!["GET", "POST"].includes(method)) {
-    throw new Error("method must be either GET or POST");
-  }
 }
 
 
@@ -74,18 +57,16 @@ export default  async function FetchVelocity(config) {
    }=config
 
 
-   validateConfig(config);
 
    try {
 
 
-
-    const url = method === "GET" 
-    ? buildVelocityURL_FOR_GET(tag)
-    : buildVelocityURL_FOR_POST(tag);
     if (method=="GET") {
 
-            return  await x402client.fetch(url, {
+            let BASEURL_FOR_GET=buildVelocityURL_FOR_GET(tag)
+
+
+            return  await x402client.fetch(BASEURL_FOR_GET, {
                     method: 'GET',
                     mode:"cors",
                     headers:buildHeaders(dev_address)
@@ -95,9 +76,9 @@ export default  async function FetchVelocity(config) {
         
          
         }
-
     else if (method=="POST"){
 
+            let BASEURL_FOR_POST=buildVelocityURL_FOR_POST(tag)
             return await x402client.fetch(BASEURL_FOR_POST, {
                 method:'POST',
                 mode:"cors",
