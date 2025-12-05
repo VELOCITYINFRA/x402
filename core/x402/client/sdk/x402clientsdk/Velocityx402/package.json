@@ -1,0 +1,16 @@
+{
+
+  "name": "velocitysdk",
+  "version": "1.0.2",
+  "description": "A lightweight async wrapper for velocity around `x402-solana` that makes it dead simple to call your Velocity endpoints using X402-secured fetches on Solana.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Velocity",
+  "license": "ISC",
+  "dependencies": {
+    "x402-solana": "^0.1.3"
+  }
+}
